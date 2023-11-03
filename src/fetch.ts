@@ -170,7 +170,7 @@ export function createFetch(globalOptions: CreateFetchOptions = {}): $Fetch {
     }
 
     const hasBody =
-      context.response.body &&
+      (context.response.body || context.response._bodyBlob) &&
       !nullBodyResponses.has(context.response.status) &&
       context.options.method !== "HEAD";
     if (hasBody) {
@@ -189,7 +189,7 @@ export function createFetch(globalOptions: CreateFetchOptions = {}): $Fetch {
           break;
         }
         case "stream": {
-          context.response._data = context.response.body;
+          context.response._data = context.response.body || context.response._bodyBlob;
           break;
         }
         default: {
