@@ -102,6 +102,7 @@ export type MappedResponseType<
 
 export interface FetchResponse<T> extends Response {
   _data?: T;
+  _bodyBlob?: Blob;
 }
 
 // --------------------------
